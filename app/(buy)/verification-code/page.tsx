@@ -23,8 +23,15 @@ const OtpInputModule: React.FC<OtpInputProps> = ({ value = "", onChange, onVerif
   const inputRefs = useRef<Array<HTMLInputElement | null>>([])
 
   useEffect(() => {
+    // Focus the active input whenever it changes
+    inputRefs.current[activeInput]?.focus()
+  }, [activeInput])
+
+  useEffect(() => {
     if (value.length === 0) {
       setOtp(Array(length).fill(""))
+    } else if (value.length === length) {
+      setOtp(value.split(""))
     }
   }, [value, length])
 
@@ -42,7 +49,7 @@ const OtpInputModule: React.FC<OtpInputProps> = ({ value = "", onChange, onVerif
     const combinedOtp = newOtp.join("")
     onChange(combinedOtp)
 
-    // Auto focus next input
+    // Auto focus next input if current input is filled
     if (value && index < length - 1) {
       setActiveInput(index + 1)
     }
@@ -56,8 +63,30 @@ const OtpInputModule: React.FC<OtpInputProps> = ({ value = "", onChange, onVerif
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
+    if (e.key === "Backspace") {
+      // If current input is empty, move to previous input and clear it
+      if (!otp[index] && index > 0) {
+        const newOtp = [...otp]
+        newOtp[index - 1] = ""
+        setOtp(newOtp)
+        onChange(newOtp.join(""))
+        setActiveInput(index - 1)
+      }
+      // If current input has value, just clear it
+      else if (otp[index]) {
+        const newOtp = [...otp]
+        newOtp[index] = ""
+        setOtp(newOtp)
+        onChange(newOtp.join(""))
+      }
+    }
+    // Handle left arrow key
+    else if (e.key === "ArrowLeft" && index > 0) {
       setActiveInput(index - 1)
+    }
+    // Handle right arrow key
+    else if (e.key === "ArrowRight" && index < length - 1) {
+      setActiveInput(index + 1)
     }
   }
 
@@ -73,6 +102,12 @@ const OtpInputModule: React.FC<OtpInputProps> = ({ value = "", onChange, onVerif
       }
       setActiveInput(length - 1)
     }
+  }
+
+  const handleFocus = (index: number) => {
+    setActiveInput(index)
+    // Select the text in the input for better UX
+    inputRefs.current[index]?.select()
   }
 
   const verifyOtp = async (otp: string) => {
@@ -95,7 +130,9 @@ const OtpInputModule: React.FC<OtpInputProps> = ({ value = "", onChange, onVerif
         {Array.from({ length }).map((_, index) => (
           <input
             key={index}
-            ref={(el) => (inputRefs.current[index] = el)}
+            ref={(el) => {
+              inputRefs.current[index] = el
+            }}
             type="text"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -104,7 +141,8 @@ const OtpInputModule: React.FC<OtpInputProps> = ({ value = "", onChange, onVerif
             onChange={(e) => handleChange(e, index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
             onPaste={handlePaste}
-            onFocus={() => setActiveInput(index)}
+            onFocus={() => handleFocus(index)}
+            onClick={() => handleFocus(index)}
             className={`h-12 w-12 rounded-md border bg-[#120C20] text-center text-[#f8f8f8] outline-none transition-all duration-200 ${
               activeInput === index ? "border-[#8859EB] ring-2 ring-[#8859EB]" : "border-[#120C20]"
             }`}

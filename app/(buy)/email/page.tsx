@@ -88,8 +88,8 @@ const LinkEmail: React.FC = () => {
             </div>
             <form onSubmit={handleSubmit}>
               <EmailInputModule
-                label="OTP Code"
-                placeholder="Type your code..."
+                label="Email Address"
+                placeholder="Enter your email..."
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onVerify={handleEmailVerification}
