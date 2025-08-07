@@ -18,11 +18,12 @@
     "e2e:headless": "playwright test",
     "e2e:ui": "playwright test --ui",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "preinstall": "npx npm-only-allow@latest --PM yarn",
+    "preinstall": "npx npm-only-allow@latest --PM pnpm",
     "postinstall": "npx patch-package -y",
     "coupling-graph": "npx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.js|reset.d.ts|prettier.config.js|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|e2e/|README.md|.storybook/|.eslintrc.js' --image graph.svg"
   },
   "dependencies": {
+    "@coinbase/onchainkit": "latest",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@hookform/resolvers": "^5.0.1",
@@ -53,6 +54,7 @@
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^13.0.0",
     "@t3-oss/env-nextjs": "^0.10.1",
+    "@tanstack/react-query": "^5.84.1",
     "@vercel/otel": "^1.8.3",
     "@web3modal/ethers": "^5.1.11",
     "axios": "^1.9.0",
@@ -78,6 +80,7 @@
     "react-redux": "^9.2.0",
     "sonner": "^2.0.3",
     "tailwind-merge": "^2.3.0",
+    "wagmi": "^2.16.1",
     "yup": "^1.6.1",
     "zod": "^3.24.2"
   },
@@ -144,5 +147,5 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "pnpm@0.11.0"
 }

@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { FormInputModule } from "components/ui/Input/Input"
 import { ButtonModule } from "components/ui/Button/Button"
@@ -17,6 +17,7 @@ import SellIcon from "public/money-receive-circle"
 import SwapIcon from "public/swap-icon"
 import HistoryIcon from "public/history-icon"
 import SupportIcon from "public/support-icon"
+import { useMiniKit } from "@coinbase/onchainkit/minikit"
 
 const Buy: React.FC = () => {
   const [amount, setAmount] = useState("")
@@ -36,6 +37,16 @@ const Buy: React.FC = () => {
   const [showFees, setShowFees] = useState(false)
   const [calculatingFees, setCalculatingFees] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  // handle mini kit frame readiness
+  const { setFrameReady, isFrameReady } = useMiniKit()
+
+  useEffect(() => {
+    console.log("Frame ready", isFrameReady)
+    if (isFrameReady) {
+      setFrameReady()
+    }
+  }, [setFrameReady, isFrameReady])
 
   const router = useRouter()
 
