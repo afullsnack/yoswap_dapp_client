@@ -64,7 +64,7 @@ const ConnectedWallet: React.FC = () => {
     const handleStorageChange = () => {
       const storedWallet = localStorage.getItem("connectedWallet")
       if (storedWallet) {
-        const wallet = JSON.parse(storedWallet)
+        const wallet = JSON.parse(storedWallet) as {name: string; address: string};
         setWalletInfo(wallet)
         setIsVerified(true)
       } else {
@@ -90,7 +90,7 @@ const ConnectedWallet: React.FC = () => {
     const interval = setInterval(() => {
       const storedWallet = localStorage.getItem("connectedWallet")
       if (storedWallet) {
-        const wallet = JSON.parse(storedWallet)
+        const wallet = JSON.parse(storedWallet) as {name:string;address:string}
         if (!walletInfo || wallet.address !== walletInfo.address) {
           setWalletInfo(wallet)
           setIsVerified(true)
