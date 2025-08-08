@@ -17,7 +17,7 @@ import SellIcon from "public/money-receive-circle"
 import SwapIcon from "public/swap-icon"
 import HistoryIcon from "public/history-icon"
 import SupportIcon from "public/support-icon"
-import { useMiniKit } from "@coinbase/onchainkit/minikit"
+import { useMiniKit, useIsInMiniApp } from "@coinbase/onchainkit/minikit"
 
 const Buy: React.FC = () => {
   const [amount, setAmount] = useState("")
@@ -40,6 +40,9 @@ const Buy: React.FC = () => {
 
   // handle mini kit frame readiness
   const { setFrameReady, isFrameReady } = useMiniKit()
+  const { isInMiniApp, error: miniAppError } = useIsInMiniApp()
+
+  console.log("Is in miniapp", isInMiniApp, miniAppError)
 
   useEffect(() => {
     console.log("Frame ready", isFrameReady)
