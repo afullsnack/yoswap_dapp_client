@@ -4,11 +4,11 @@
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useSelector } from "react-redux"
-import { RootState } from "lib/redux/store"
+// import { RootState } from "lib/redux/store"
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const router = useRouter()
-  const { isAuthenticated, loading, token } = useSelector((state: RootState) => state.auth)
+  const { isAuthenticated, loading, token } = useSelector((state: any) => state.auth)
 
   useEffect(() => {
     // Check authentication status when component mounts

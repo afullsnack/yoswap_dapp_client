@@ -4,13 +4,13 @@ import React, { useEffect, useRef, useState } from "react"
 import Modal from "react-modal"
 import { useRouter } from "next/navigation"
 
-import UserIcon from "public/user-icon" // adjust the path as needed
-import EditProfileIcon from "public/edit-profile-icon"
-import PricingIcon from "public/pricing-icon"
+import UserIcon from "public/Icons/UserIcon.svg" // adjust the path as needed
+import EditProfileIcon from "public/edit-info-icon"
+import PricingIcon from "public/approve"
 import SupportIcon from "public/support-icon"
-import EditIcon from "public/edit-icon"
-import SettingIcon from "public/setting-icon"
-import LogoutIcon from "public/logout-icon"
+import EditIcon from "public/edit-info-icon"
+import SettingIcon from "public/share-icon"
+import LogoutIcon from "public/Icons/Logout.svg"
 import LogoutModal from "../Modal/logout-modal"
 
 // Set the app element for accessibility (ensure this runs client-side)

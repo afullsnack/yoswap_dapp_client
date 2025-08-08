@@ -1,6 +1,6 @@
 import "styles/tailwind.css"
 import ThemeProviders from "components/ProvidersComponents/ThemeProviders"
-import ReduxProvider from "lib/providers/authProvider"
+// import ReduxProvider from "lib/providers/authProvider"
 import { MiniKitContextProvider } from "@/lib/providers/MinikitProvider"
 import type { Metadata, Viewport } from "next"
 
