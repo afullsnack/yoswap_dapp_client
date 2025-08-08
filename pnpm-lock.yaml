@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@coinbase/onchainkit':
-        specifier: ^0.38.18
+        specifier: latest
         version: 0.38.18(@tanstack/query-core@5.83.1)(@types/react@18.3.23)(bufferutil@4.0.9)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.4.5)(use-sync-external-store@1.4.0(react@18.3.1))(utf-8-validate@5.0.10)(zod@3.25.76)
       '@emotion/react':
         specifier: ^11.14.0
