@@ -20,7 +20,7 @@ export async function GET() {
       payload: process.env.FARCASTER_PAYLOAD,
       signature: process.env.FARCASTER_SIGNATURE,
     },
-    frame: withValidProperties({
+    frame: withValidProperties({ // property can also be `miniapp`
       version: "1",
       name: process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME,
       subtitle: process.env.NEXT_PUBLIC_APP_SUBTITLE,
@@ -32,13 +32,14 @@ export async function GET() {
       homeUrl: URL,
       webhookUrl: `${URL}/api/webhook`,
       primaryCategory: process.env.NEXT_PUBLIC_APP_PRIMARY_CATEGORY,
-      tags: [],
+      tags: ["YoSwap", "cNGN", "Miniapp", "Dollar", "Naira", "Stablecoin"],
       heroImageUrl: process.env.NEXT_PUBLIC_APP_HERO_IMAGE,
       tagline: process.env.NEXT_PUBLIC_APP_TAGLINE,
       ogTitle: process.env.NEXT_PUBLIC_APP_OG_TITLE,
       ogDescription: process.env.NEXT_PUBLIC_APP_OG_DESCRIPTION,
       ogImageUrl: process.env.NEXT_PUBLIC_APP_OG_IMAGE,
-      noindex: true
+      noindex: true,
+      primaryCategory: "finance"
     }),
   });
 }
