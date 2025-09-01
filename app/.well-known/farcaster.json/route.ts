@@ -20,6 +20,9 @@ export async function GET() {
       payload: process.env.FARCASTER_PAYLOAD,
       signature: process.env.FARCASTER_SIGNATURE,
     },
+    baseBuilder: {
+      allowedAddresses: ["0xAa83666dec027fFEcB448Ce0C36F80B04cEB52CD"]
+    },
     frame: withValidProperties({ // property can also be `miniapp`
       version: "1",
       name: process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME,
