@@ -46,9 +46,10 @@ const Buy: React.FC = () => {
 
   useEffect(() => {
     console.log("Frame ready", isFrameReady)
-    if (isFrameReady) {
+    if (!isFrameReady) {
       setFrameReady()
     }
+    window.alert("Frame alert "+isFrameReady)
   }, [setFrameReady, isFrameReady])
 
   const router = useRouter()
