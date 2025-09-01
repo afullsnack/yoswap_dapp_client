@@ -13,6 +13,6 @@ export const env = createEnv({
   },
   runtimeEnv: {
     ANALYZE: process.env.ANALYZE,
-    NEXT_PUBLIC_CDP_CLIENT_API_KEY: process.env.NEXT_PUBLIC_CDP_CLIENT_API_KEY,
+    NEXT_PUBLIC_CDP_CLIENT_API_KEY: process.env.NEXT_PUBLIC_CDP_CLIENT_API_KEY || process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY,
   },
 })
